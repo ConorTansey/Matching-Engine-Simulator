@@ -1,6 +1,6 @@
 # Matching_Engine_Simulator
 
-This is a program that is used to read in the contents of a csv file containing market data about trades that have been made by you as well as other participants throughout a trading day and will calculate your profit as well as your short and long exposure once trading has stopped. The logic simulates a matching engine that is price, time priority and takes larger sized orders for orders with the same price.
+This is a program that is used to read in the contents of a csv file containing market data about trades that have been made by you as well as other participants throughout a trading day and will calculate your profit as well as your short and long exposure once trading has stopped. The logic simulates a matching engine that is price/time priority and prioritises larger sized orders at the same price.
 
 CSV is in the following format for each entry
 
@@ -16,6 +16,6 @@ Refer to SampleTradeData.csv to see the expected format
 
 To run your project pass in the path to your csv file as shown 
 
-dotnet run path
+`dotnet run path`
 
 
