@@ -1,4 +1,4 @@
-# Order_Book_Simulator
+# Matching_Engine_Simulator
 
 This is a program that is used to read in the contents of a csv file containing market data about trades that have been made by you as well as other participants throughout a trading day and will calculate your profit as well as your short and long exposure once trading has stopped. The logic simulates a matching engine that is price, time priority and takes larger sized orders for orders with the same price.
 
