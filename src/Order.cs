@@ -1,11 +1,11 @@
 class Order{
-        private Action _action;
+        private OrderType _orderType;
         private int _size;
         private int _price;
 
-        public Action Action{
-            get => _action;
-            set => _action = value;
+        public OrderType OrderType{
+            get => _orderType;
+            set => _orderType = value;
         }
 
         public int Size{
@@ -19,7 +19,7 @@ class Order{
         }
 
         public Order(string share, string action, string size, string price){
-            if(!Enum.TryParse(action, out Action parsedAction)){
+            if(!Enum.TryParse(action, out OrderType parsedAction)){
                 Console.WriteLine("Invalid action in order");
             };
             if(!int.TryParse(size, out int parsedSize)){
@@ -28,7 +28,7 @@ class Order{
             if(!int.TryParse(price, out int parsedPrice)){
                 Console.WriteLine("Invalid price in order");
             }
-            Action = parsedAction;
+            OrderType = parsedAction;
             Size = parsedSize;
             Price = parsedPrice;
         }

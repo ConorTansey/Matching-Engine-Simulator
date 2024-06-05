@@ -1,4 +1,4 @@
-public enum Action{
+public enum OrderType{
     BUY,
     SELL,
     BID,

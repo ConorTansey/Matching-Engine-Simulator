@@ -19,10 +19,10 @@ class OrderBook{
                     while(restingOrders.Last != null && leavesQuantity > 0){
                         LinkedListNode<Order> restingOrder = restingOrders.Last;
                         int matchedQuantity = Math.Min(restingOrder.Value.Size, leavesQuantity);
-                        if(order.Action == Action.OFFER && restingOrder.Value.Action == Action.BUY){
+                        if(order.OrderType == OrderType.OFFER && restingOrder.Value.OrderType == OrderType.BUY){
                             profit += Math.Abs(restingOrder.Value.Price - order.Price) * matchedQuantity;
                         }
-                        else if(order.Action == Action.SELL && restingOrder.Value.Action == Action.BID){
+                        else if(order.OrderType == OrderType.SELL && restingOrder.Value.OrderType == OrderType.BID){
                             profit += Math.Abs(restingOrder.Value.Price - order.Price) * matchedQuantity;
                         }
                         leavesQuantity -= matchedQuantity;
@@ -69,10 +69,10 @@ class OrderBook{
             while(restingOrders.Last != null && leavesQuantity > 0){
                 LinkedListNode<Order> restingOrder = restingOrders.Last;
                 int matchedQuantity = Math.Min(restingOrder.Value.Size, order.Size);
-                if(order.Action == Action.BID && restingOrder.Value.Action == Action.SELL){
+                if(order.OrderType == OrderType.BID && restingOrder.Value.OrderType == OrderType.SELL){
                     profit += Math.Abs(restingOrder.Value.Price - order.Price) * matchedQuantity;
                 }
-                else if(order.Action == Action.BUY && restingOrder.Value.Action == Action.OFFER){
+                else if(order.OrderType == OrderType.BUY && restingOrder.Value.OrderType == OrderType.OFFER){
                     profit += Math.Abs(restingOrder.Value.Price - order.Price) * matchedQuantity;
                 }
                 leavesQuantity -= matchedQuantity;
@@ -113,7 +113,7 @@ class OrderBook{
 
         int profit = 0;
 
-        if(order.Action == Action.OFFER || order.Action == Action.SELL){
+        if(order.OrderType == OrderType.OFFER || order.OrderType == OrderType.SELL){
             if(bestBid == -1 || order.Price > bestBid){
                 sellBook.AddOrder(order);
                 if(bestOffer == -1 || bestOffer > order.Price){
@@ -144,14 +144,14 @@ class OrderBook{
         foreach(OrderBook ob in orderBooks.Values){
             foreach(PriceLevel pl in ob.buyBook.PriceLevels.Values){
                 foreach(Order o in pl.Orders){
-                    if(o.Action == Action.BUY){
+                    if(o.OrderType == OrderType.BUY){
                         longExposure += o.Price * o.Size;
                     }
                 }
             }
             foreach(PriceLevel pl in ob.sellBook.PriceLevels.Values){
                 foreach(Order o in pl.Orders){
-                    if(o.Action == Action.SELL){
+                    if(o.OrderType == OrderType.SELL){
                         shortExposure += o.Price * o.Size;
                     }
                 }
